@@ -14,6 +14,7 @@ export interface Tag {
 }
 
 export function Form() {
+  const [title, setTitle] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
@@ -41,19 +42,31 @@ export function Form() {
   }
 
   async function callCreateCard(event: FormEvent) {
-    await handleCreateCard({ name, email, description, list }, tags, event);
+    const card = { name, email, description, list, title };
+
+    await handleCreateCard(card, tags, event);
 
     setDescription("");
     setEmail("");
     setList("");
     setName("");
+    setTitle("");
     setTag({ id: 0, name: "" });
     setTags([]);
   }
 
   return (
     <Container>
-      <h2>Criar Card no Trello</h2>
+      <h2>Criar card de tarefa</h2>
+
+      <h3>Titulo *</h3>
+      <input
+        type="text"
+        placeholder="Digite o titulo para seu card"
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+        required
+      />
 
       <Row numberOfColumns={2}>
         <div className="inputContainer">
@@ -117,7 +130,7 @@ export function Form() {
         ))}
       </Row>
 
-      <h3>Status da tarefa</h3>
+      <h3>Lista da tarefa *</h3>
       <Row numberOfColumns={3}>
         <RadioBox
           type="button"

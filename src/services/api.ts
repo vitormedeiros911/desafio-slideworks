@@ -7,6 +7,7 @@ import { Tag } from "../components/Form";
 import { isEmail } from "../components/Form/util";
 
 interface Card {
+  title: string;
   name: string;
   email: string;
   description: string;
@@ -24,7 +25,12 @@ export async function handleCreateCard(
 ) {
   event.preventDefault();
 
-  if (card.name === "" || card.description === "" || card.list === "") {
+  if (
+    card.title === "" ||
+    card.name === "" ||
+    card.description === "" ||
+    card.list === ""
+  ) {
     const notify = () =>
       toast.error("Por favor, Preencha todos os campos obrigatórios");
     notify();
@@ -48,7 +54,7 @@ export async function handleCreateCard(
   }
 
   let response = await api.post(
-    `cards?key=${process.env.REACT_APP_KEY}&token=${process.env.REACT_APP_TOKEN}&idList=${idList}&name=${card.name} - ${card.email}&desc=${card.description}`
+    `cards?key=${process.env.REACT_APP_KEY}&token=${process.env.REACT_APP_TOKEN}&idList=${idList}&name=${card.title}&desc=${card.description} - Criado por ${card.name} - ${card.email}`
   );
 
   if (response.status === 200) {

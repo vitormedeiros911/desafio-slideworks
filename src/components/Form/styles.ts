@@ -13,7 +13,7 @@ export const Container = styled.form`
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
 
   h2 {
-    font-size: 2rem;
+    font-size: 2.3rem;
   }
 
   h3 {
@@ -106,7 +106,7 @@ export const RadioBox = styled.button<RadioBoxProps>`
   height: 3.9rem;
   margin-top: 0.4rem;
   border-radius: 0.3rem;
-  border: 1px solid #d7d7d7;
+  border: 1.2px solid #d7d7d7;
 
   background: ${(props) =>
     props.isActive
@@ -127,6 +127,6 @@ export const RadioBox = styled.button<RadioBoxProps>`
   transition: border-color 0.2s;
 
   &:hover {
-    border-color: ${darken(0.2, "#d7d7d7")};
+    border-color: ${darken(0.5, "#d7d7d7")};
   }
 `;
