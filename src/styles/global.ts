@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     --background: #f0f2f5;
     --green: #04CD49;
     --input: #E7E9EE;
+    --blue: #2B6DD0;
     --text: #353535;
   }
 
@@ -45,5 +46,3 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 `;
-
-

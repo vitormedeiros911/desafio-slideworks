@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
+export const Container = styled.header`
   background: var(--black);
   color: #fff;
-  height: 3rem;
   width: 100%;
-  border-radius: 0.35rem;
+  min-height: 13rem;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-top: 1rem;
 
-  span {
-    width: 90%;
-    font-size: 0.8rem;
+  svg {
+    margin-top: 2rem;
+    margin-right: 10px;
+  }
+
+  h1 {
+    margin-top: 2rem;
     font-weight: 600;
+    font-size: 3rem;
   }
 `;
