@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
-  background: var(--black);
-  color: #fff;
+interface ContainerProps {
+  color: string;
+}
+
+export const Container = styled.button<ContainerProps>`
+  background: ${(props) => (props.color === "null" ? "#000" : props.color)};
+  color: ${(props) => (props.color === "yellow" ? "#000" : "#fff")};
   height: 3rem;
   width: 100%;
   border-radius: 0.35rem;
@@ -10,6 +14,7 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
+  border: 1px solid black;
 
   span {
     width: 90%;

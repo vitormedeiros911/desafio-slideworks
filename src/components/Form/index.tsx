@@ -11,23 +11,38 @@ import { Container, Row, RadioBox } from "./styles";
 export interface Tag {
   id: number;
   name: string;
+  color: string;
 }
+
+const initialState = {
+  id: 0,
+  name: "",
+  color: "",
+};
 
 export function Form() {
   const [title, setTitle] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
-  const [tag, setTag] = useState<Tag>({ id: 0, name: "" });
+  const [tag, setTag] = useState<Tag>(initialState);
   const [tags, setTags] = useState<Tag[]>([]);
   const [list, setList] = useState("");
+  const [selectedColor, setSelectedColor] = useState<string>("");
 
-  function handleAddTag(tag: Tag) {
+  function handleAddTag(tag: Tag, color: string) {
     const foundTag = tags.find((foundTag) => foundTag.name === tag.name);
 
     if (tag.name && !foundTag) {
-      setTag({ id: 0, name: "" });
-      setTags([...tags, tag]);
+      setTag(initialState);
+      if (color === "") {
+        const notify = () =>
+          toast.error("Ih, deu ruim! Essa cor de tag não existe.");
+        notify();
+      } else {
+        tag.color = color;
+        setTags([...tags, tag]);
+      }
     } else {
       const notify = () =>
         toast.error("Ih, deu ruim! Essa tag já foi adicionada.");
@@ -51,7 +66,7 @@ export function Form() {
     setList("");
     setName("");
     setTitle("");
-    setTag({ id: 0, name: "" });
+    setTag(initialState);
     setTags([]);
   }
 
@@ -101,32 +116,57 @@ export function Form() {
         value={description}
         required
       />
-      <h3>Adicionar Tags</h3>
-      <Row numberOfColumns={2}>
+
+      <h3>Adicionar etiqueta e cor</h3>
+      <Row numberOfColumns={3}>
         <input
           type="text"
           maxLength={10}
           placeholder="Ex: React"
           value={tag.name}
           onChange={(event) =>
-            setTag({ name: String(event.target.value), id: Math.random() })
+            setTag({
+              name: String(event.target.value),
+              id: Math.random(),
+              color: selectedColor,
+            })
           }
         />
+        <select
+          name="color"
+          onChange={(event) => setSelectedColor(event.target.value)}
+          className="color-select"
+          defaultValue={""}
+        >
+          <option disabled value="">
+            Selecione uma cor
+          </option>
+          <option value="green">Verde</option>
+          <option value="yellow">Amarelo</option>
+          <option value="orange">Laranja</option>
+          <option value="red">Vermelho</option>
+          <option value="purple">Roxo</option>
+          <option value="blue">Azul</option>
+          <option value="null">Nenhuma</option>
+        </select>
         <button
           className="add-btn"
           type="button"
-          onClick={() => handleAddTag(tag)}
+          onClick={() => handleAddTag(tag, selectedColor)}
         >
           <FaPlus color="#fff" size={20} />
         </button>
       </Row>
       <Row numberOfColumns={4}>
         {tags.map((tag) => (
-          <TagItem
-            key={String(Math.random())}
-            tagTitle={tag.name}
-            onClick={() => handleDeleteTag(tag.id)}
-          />
+          <>
+            <TagItem
+              key={String(Math.floor(Math.random()))}
+              tagTitle={tag.name}
+              onClick={() => handleDeleteTag(tag.id)}
+              color={tag.color}
+            />
+          </>
         ))}
       </Row>
 
@@ -157,6 +197,7 @@ export function Form() {
           <span>Finalizado</span>
         </RadioBox>
       </Row>
+
       <button
         type="submit"
         onClick={(event) => {

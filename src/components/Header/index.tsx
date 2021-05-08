@@ -4,7 +4,7 @@ import { Container } from "./styles";
 export function Header() {
   return (
     <Container>
-      <FaTrello color="#fff" size={60}/>
+      <FaTrello color="#fff" size={60} />
       <h1>Trello Cards</h1>
     </Container>
   );

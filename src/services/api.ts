@@ -74,7 +74,7 @@ export async function handleCreateLabel(tags: Tag[], cardId: number) {
 
   for (let i = 0; i < tags.length; i++) {
     const response = await api.post(
-      `cards/${cardId}/labels?key=${process.env.REACT_APP_KEY}&token=${process.env.REACT_APP_TOKEN}&name=${tags[i].name}&color=null`
+      `cards/${cardId}/labels?key=${process.env.REACT_APP_KEY}&token=${process.env.REACT_APP_TOKEN}&name=${tags[i].name}&color=${tags[i].color}`
     );
 
     if (response.status !== 200) {

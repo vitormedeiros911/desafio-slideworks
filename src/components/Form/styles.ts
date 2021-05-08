@@ -23,12 +23,12 @@ export const Container = styled.form`
   }
 
   input,
-  textarea {
+  textarea,
+  select {
     width: 100%;
-    padding: 0 1.5rem;
+    padding: 0.2rem 1rem;
     height: 3.2rem;
     border-radius: 0.3rem;
-    margin-top: 0.4rem;
     background: var(--input);
     border: 1px solid #d7d7d7;
     margin-top: 1rem;
@@ -36,8 +36,17 @@ export const Container = styled.form`
 
   textarea {
     resize: vertical;
-    padding: 1.5rem;
+    padding: 1rem 1rem;
     min-height: 10rem;
+  }
+
+  select {
+    background-color: #fff;
+    cursor: pointer;
+
+    &::-ms-expand {
+      display: none;
+    }
   }
 
   button {
@@ -69,8 +78,7 @@ export const Container = styled.form`
     width: 3.5rem;
   }
 
-  .add-btn,
-  .tag-btn {
+  .add-btn {
     height: 3.2rem;
     background: #000;
     border-radius: 0.5rem;
