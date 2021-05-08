@@ -76,9 +76,6 @@ export const Container = styled.form`
 
   .add-btn {
     width: 3.5rem;
-  }
-
-  .add-btn {
     height: 3.2rem;
     background: #000;
     border-radius: 0.5rem;

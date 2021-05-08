@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 import { Tag } from "../components/Form";
-import { isEmail } from "../components/Form/util";
+import { isValidEmail, isValidName } from "./util";
 
 interface Card {
   title: string;
@@ -37,9 +37,10 @@ export async function handleCreateCard(
     return;
   }
 
-  if (!isEmail(card.email)) {
-    return;
-  }
+  const validatedEmail = isValidEmail(card.email);
+  const validatedName = isValidName(card.name);
+
+  if (!validatedEmail || !validatedName) return;
 
   let idList;
 

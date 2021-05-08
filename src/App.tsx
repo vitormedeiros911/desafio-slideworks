@@ -16,6 +16,7 @@ function App() {
         position="top-right"
         hideProgressBar={false}
         closeOnClick
+        limit={3}
       />
       <Header />
       <Container>

@@ -9,13 +9,11 @@ import { TagItem } from "../TagItem";
 import { Container, Row, RadioBox } from "./styles";
 
 export interface Tag {
-  id: number;
   name: string;
   color: string;
 }
 
 const initialState = {
-  id: 0,
   name: "",
   color: "",
 };
@@ -45,14 +43,15 @@ export function Form() {
       }
     } else {
       const notify = () =>
-        toast.error("Ih, deu ruim! Essa tag já foi adicionada.");
+        toast.error("Ih, deu ruim! Essa tag já foi adicionada ou está vazia.");
       notify();
       return;
     }
   }
 
-  function handleDeleteTag(id: number) {
-    const filteredTags = tags.filter((tag) => tag.id !== id);
+  function handleDeleteTag(name: string, event: FormEvent) {
+    event.preventDefault();
+    const filteredTags = tags.filter((tag) => tag.name !== name);
     setTags(filteredTags);
   }
 
@@ -90,9 +89,7 @@ export function Form() {
             type="text"
             placeholder="Digite seu nome"
             value={name}
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
+            onChange={(event) => setName(event.target.value)}
             required
           />
         </div>
@@ -127,7 +124,6 @@ export function Form() {
           onChange={(event) =>
             setTag({
               name: String(event.target.value),
-              id: Math.random(),
               color: selectedColor,
             })
           }
@@ -159,14 +155,12 @@ export function Form() {
       </Row>
       <Row numberOfColumns={4}>
         {tags.map((tag) => (
-          <>
-            <TagItem
-              key={String(Math.floor(Math.random()))}
-              tagTitle={tag.name}
-              onClick={() => handleDeleteTag(tag.id)}
-              color={tag.color}
-            />
-          </>
+          <TagItem
+            key={tag.name}
+            tagTitle={tag.name}
+            onClick={(event) => handleDeleteTag(tag.name, event)}
+            color={tag.color}
+          />
         ))}
       </Row>
 
