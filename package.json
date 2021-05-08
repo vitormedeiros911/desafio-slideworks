@@ -2,7 +2,7 @@
   "name": "trello-cards",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vitormedeiros911.github.io/desafio-slideworks/",
+  "homepage": "https://vitormedeiros911.github.io/trello-cards/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -48,7 +48,6 @@
     ]
   },
   "devDependencies": {
-    "@types/react-select": "^4.0.15",
     "@types/styled-components": "^5.1.9",
     "gh-pages": "^3.1.0"
   }
