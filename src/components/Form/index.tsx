@@ -37,6 +37,7 @@ export function Form() {
         const notify = () =>
           toast.error("Ih, deu ruim! Essa cor de tag não existe.");
         notify();
+        return;
       } else {
         tag.color = color;
         setTags([...tags, tag]);

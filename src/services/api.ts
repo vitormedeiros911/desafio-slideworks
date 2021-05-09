@@ -64,9 +64,11 @@ export async function handleCreateCard(
     const notify = () =>
       toast.success("Deu bom! O card foi criado com sucesso");
     notify();
+    return;
   } else {
     const notify = () => toast.error("Deu tudo errado! Tente novamente.");
     notify();
+    return;
   }
 }
 
@@ -84,6 +86,7 @@ export async function handleCreateLabel(tags: Tag[], cardId: number) {
           `Ih deu ruim, não foi possível criar a tag: ${tags[i].name}`
         );
       notify();
+      return;
     }
   }
 }
