@@ -31,9 +31,7 @@ export async function handleCreateCard(
     card.description === "" ||
     card.list === ""
   ) {
-    const notify = () =>
-      toast.error("Por favor, Preencha todos os campos obrigatórios");
-    notify();
+    toast.error("Por favor, Preencha todos os campos obrigatórios");
     return;
   }
 
@@ -61,13 +59,10 @@ export async function handleCreateCard(
   if (response.status === 200) {
     const cardId = response.data.id;
     await handleCreateLabel(tags, cardId);
-    const notify = () =>
-      toast.success("Deu bom! O card foi criado com sucesso");
-    notify();
+    toast.success("Deu bom! O card foi criado com sucesso");
     return;
   } else {
-    const notify = () => toast.error("Deu tudo errado! Tente novamente.");
-    notify();
+    toast.error("Deu tudo errado! Tente novamente.");
     return;
   }
 }
@@ -81,11 +76,7 @@ export async function handleCreateLabel(tags: Tag[], cardId: number) {
     );
 
     if (response.status !== 200) {
-      const notify = () =>
-        toast.error(
-          `Ih deu ruim, não foi possível criar a tag: ${tags[i].name}`
-        );
-      notify();
+      toast.error(`Ih deu ruim, não foi possível criar a tag: ${tags[i].name}`);
       return;
     }
   }

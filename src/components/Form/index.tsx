@@ -34,18 +34,14 @@ export function Form() {
     if (tag.name && !foundTag) {
       setTag(initialState);
       if (color === "") {
-        const notify = () =>
-          toast.error("Ih, deu ruim! Essa cor de tag não existe.");
-        notify();
+        toast.error("Ih, deu ruim! Essa cor de tag não existe.");
         return;
       } else {
         tag.color = color;
         setTags([...tags, tag]);
       }
     } else {
-      const notify = () =>
-        toast.error("Ih, deu ruim! Essa tag já foi adicionada ou está vazia.");
-      notify();
+      toast.error("Ih, deu ruim! Essa tag já foi adicionada ou está vazia.");
       return;
     }
   }
